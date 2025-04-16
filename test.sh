@@ -48,9 +48,16 @@ install_nmap() {
 # Функция для сканирования сети
 scan_network() {
     local subnet=$1
+    local output_file="network_scan_$(date +%Y-%m-%d_%H-%M-%S).txt"
 
     echo "Сканирование подсети: $subnet"
+    echo "Результаты сканирования будут сохранены в файл: $output_file"
     
+    # Записываем заголовок в файл
+    echo "===== Результаты сканирования сети ($subnet) =====" > "$output_file"
+    echo "Дата и время: $(date)" >> "$output_file"
+    echo "" >> "$output_file"
+
     # Выполняем ping scan с помощью nmap
     nmap -sn "$subnet" | grep -E "Nmap scan report for|MAC Address" | awk '
     /Nmap scan report for/ {
@@ -65,65 +72,39 @@ scan_network() {
     /MAC Address/ {
         mac = $3
         vendor = substr($0, index($0,$4))
-        print "Активное устройство: " ip " (" hostname ") MAC: " mac " Производитель: " vendor
+        print "Активное устройство: " ip " (" hostname ") MAC: " mac " Производитель: " vendor >> "'"$output_file"'"
     }
     END {
         if (!mac) {
-            print "Активное устройство: " ip " (" hostname ")"
-        }
-    }'
-}
-# Функция для сканирования сети
-scan_network() {
-    local subnet=$1
-
-    echo "Сканирование подсети: $subnet"
-    
-    # Выполняем ping scan с помощью nmap
-    nmap -sn "$subnet" | grep -E "Nmap scan report for|MAC Address" | awk '
-    /Nmap scan report for/ {
-        ip = $NF
-        if (ip ~ /\(.*\)/) {
-            hostname = substr(ip, 2, length(ip)-2)
-            ip = $(NF-1)
-        } else {
-            hostname = "Неизвестно"
-        }
-    }
-    /MAC Address/ {
-        mac = $3
-        vendor = substr($0, index($0,$4))
-        print "Активное устройство: " ip " (" hostname ") MAC: " mac " Производитель: " vendor
-    }
-    END {
-        if (!mac) {
-            print "Активное устройство: " ip " (" hostname ")"
+            print "Активное устройство: " ip " (" hostname ")" >> "'"$output_file"'"
         }
     }'
 
     # Сканируем каждое активное устройство для определения ОС и открытых портов
     for ip in $(nmap -sn "$subnet" | grep "Nmap scan report for" | awk '{print $NF}'); do
-        echo ""
-        echo "===== Сканирование устройства: $ip ====="
+        echo "" >> "$output_file"
+        echo "===== Сканирование устройства: $ip =====" >> "$output_file"
         
         # Определение операционной системы
         os_info=$(nmap -O "$ip" 2>/dev/null | grep "OS details:" | sed 's/OS details: //')
         if [[ -n "$os_info" ]]; then
-            echo "Операционная система: $os_info"
+            echo "Операционная система: $os_info" >> "$output_file"
         else
-            echo "Операционная система: Не определена"
+            echo "Операционная система: Не определена" >> "$output_file"
         fi
 
         # Сканирование открытых портов
-        echo "Открытые порты:"
+        echo "Открытые порты:" >> "$output_file"
         nmap -p 1-1000 -sV "$ip" 2>/dev/null | awk '
         /open/ {
             port = $1
             service = $3
             version = $NF
             print "  Порт: " port " Сервис: " service " Версия: " version
-        }'
+        }' >> "$output_file"
     done
+
+    echo "Сканирование завершено. Результаты сохранены в файл: $output_file"
 }
 
 # Основной блок скрипта
