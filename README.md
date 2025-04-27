@@ -8,10 +8,38 @@
 
 ### Ответы.
 
-`Приведите ответ в свободной форме........`
-
-1. `https://github.com/MindTempest/git_hw/commit/cc2b3da`
-2. `https://github.com/MindTempest/git_hw/commit/5212388`
-3. `https://github.com/MindTempest/git_hw/commit/696442a`
-4. `https://github.com/MindTempest/git_hw/network`
-
+Task 1: 
+    screenshot:
+    ![alt text](https://github.com/MindTempest/Lee/blob/main/lab.jpg)
+    
+    ![alt text](https://github.com/MindTempest/Lee/blob/main/git_runner.jpg)
+    
+    ![alt text](https://github.com/MindTempest/Lee/blob/main/runner_setting.jpg)
+    
+    
+Task 2: 
+ yml code:
+ 
+    stages:
+      -build
+      -test
+      -deploy
+    build_job:
+     stage: build
+     script:
+      -echo "New project"
+      -mkdir build
+      -touch build/success
+    test_job:
+     stage: test
+     script: 
+      -echo "Running tests..."
+      -echo "Test passed!"
+    deploy_job:
+     stage: deploy
+     script:
+      -echo "Deploying app"
+      -echo "Deployment complete!"
+      
+      
+screenshots
