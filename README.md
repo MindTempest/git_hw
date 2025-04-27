@@ -7,16 +7,16 @@
 
 
 ### Ответы.
-
 #Task 1: 
-#Screenshot:
+
+###Screenshot:
     ![alt text](https://github.com/MindTempest/Lee/blob/main/lab.jpg)
 
-#Screenshot
+###Screenshot
     ![alt text](https://github.com/MindTempest/Lee/blob/main/git_runner.jpg)
 
-#Screenshot
-    ![alt text](https://github.com/MindTempest/Lee/blob/main/runner_setting.jpg)
+###Screenshot
+    ![alt text](https://github.com/MindTempest/Lee/blob/main/runner_settings.jpg)
     
     
 #Task 2: 
