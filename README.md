@@ -8,16 +8,18 @@
 
 ### Ответы.
 
-Task 1: 
-    screenshot:
+#Task 1: 
+#Screenshot:
     ![alt text](https://github.com/MindTempest/Lee/blob/main/lab.jpg)
-    
+
+#Screenshot
     ![alt text](https://github.com/MindTempest/Lee/blob/main/git_runner.jpg)
-    
+
+#Screenshot
     ![alt text](https://github.com/MindTempest/Lee/blob/main/runner_setting.jpg)
     
     
-Task 2: 
+#Task 2: 
  yml code:
  
     stages:
@@ -41,5 +43,4 @@ Task 2:
       -echo "Deploying app"
       -echo "Deployment complete!"
       
-      
-screenshots
+
