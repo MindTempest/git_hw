@@ -1,19 +1,16 @@
 # Домашнее задание к занятию "git_hw" - Lee
 
-
-
 ### Zbx_inst:
-    ![alt text](https://github.com/MindTempest/git_hw/blob/main/zbx_inst.jpg)
-## Zabbix installation
+# Zabbix installation
+![Screenshot](https://github.com/MindTempest/git_hw/blob/main/zbx_inst.jpg)
 
 ### Ans_inst:
-    ![alt text](https://github.com/MindTempest/git_hw/blob/main/zbx_ans.jpg)
-    
-## Zabbix installation on host with ansible
+# Zabbix installation on host with ansible
+![Screenshot](https://github.com/MindTempest/git_hw/blob/main/zbx_ans.jpg)
 
 ### Hosts_ans:
-    ![alt text](https://github.com/MindTempest/git_hw/blob/main/zbx_host1.jpg)
-    
+![Screenshot](https://github.com/MindTempest/git_hw/blob/main/zbx_host1.jpg)
+
 ### Host_graphs  
-    ![alt text](https://github.com/MindTempest/git_hw/blob/main/zbs_host2.jpg)
-## Graphs on host
+# Graphs on host
+![Screenshot](https://github.com/MindTempest/git_hw/blob/main/zbs_host2.jpg)
