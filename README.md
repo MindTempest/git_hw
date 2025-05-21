@@ -11,6 +11,8 @@
 # Hosts_ans:
 ![Screenshot](https://github.com/MindTempest/git_hw/blob/main/zbx_data.jpg)
 
+![Screenshot](https://github.com/MindTempest/git_hw/blob/main/zbx_web.jpg)
+
 # Host_graphs  
 ## Graphs on host
 ![Screenshot](https://github.com/MindTempest/git_hw/blob/main/zabzab_data.jpg)
