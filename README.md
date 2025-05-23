@@ -34,3 +34,10 @@
 ### CREATE DATABASE zabbix WITH OWNER zabbix ENCODING 'UTF8';
 ### GRANT ALL PRIVILEGES ON DATABASE zabbix TO zabbix;
 
+
+#Zbx data
+![_new_Screenshot](https://github.com/MindTempest/git_hw/blob/main/zbx_data.jpg)
+
+#Zbx logs
+![_new_Screenshot](https://github.com/MindTempest/git_hw/blob/main/zbx_log.jpg)
+![_new_Screenshot](https://github.com/MindTempest/git_hw/blob/main/zbx_log1.jpg)
