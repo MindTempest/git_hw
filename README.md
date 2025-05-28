@@ -9,7 +9,7 @@
 ### Требования к результату
 ### Прикрепите в файл README.md скриншот страницы шаблона с названием «Задание 1»
 
- ![Screenshot](https://github.com/MindTempest/git_hw/blob/main/templates.jpg) ![Screenshot](https://github.com/MindTempest/git_hw/blob/main/templates1.jpg) ![Screenshot](https://github.com/MindTempest/git_hw/blob/main/templates2.jpg)
+ ![Screenshot](https://github.com/MindTempest/git_hw/blob/main/templates.jpg) ![Screenshot](https://github.com/MindTempest/git_hw/blob/main/templates2.jpg)
 
  
 # Задание 2
@@ -42,6 +42,7 @@
 
  #### Привязанные Tamplates
  ![Screenshot](https://github.com/MindTempest/git_hw/blob/main/cst_mon.jpg)  ![Screenshot](https://github.com/MindTempest/git_hw/blob/main/cst_mon1.jpg) ![Screenshot](https://github.com/MindTempest/git_hw/blob/main/cst_mon2.jpg) ![Screenshot](https://github.com/MindTempest/git_hw/blob/main/cst_mon3.jpg)
+ ![Screenshot](https://github.com/MindTempest/git_hw/blob/main/templates1.jpg) 
 
 
  
