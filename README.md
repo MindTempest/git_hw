@@ -9,7 +9,7 @@
 ### Требования к результату
 ### Прикрепите в файл README.md скриншот страницы шаблона с названием «Задание 1»
 
- ![Screenshot](https://github.com/MindTempest/git_hw/blob/main/zabzab_data.jpg)
+ ![Screenshot](https://github.com/MindTempest/git_hw/blob/main/templates.jpg)
 
  
 # Задание 2
@@ -36,6 +36,14 @@
  * Проверьте что в раздел Latest Data начали поступать необходимые данные из вашего шаблона
 ### Требования к результату
  #### Прикрепите в файл README.md скриншот страницы хостов, где будут видны привязки шаблонов с названиями «Задание 2-3». Хосты должны иметь зелёный статус подключения
+
+ #### Хосты
+ ![Screenshot](https://github.com/MindTempest/git_hw/blob/main/zbx_hosts.jpg)
+
+ #### Привязанные Tamplates
+ ![Screenshot](https://github.com/MindTempest/git_hw/blob/main/cst_mon.jpg)
+
+
  
 # Задание 4
 ## Создайте свой кастомный дашборд.
@@ -46,8 +54,8 @@
  * Разместите на нём несколько графиков на ваше усмотрение.
 ### Требования к результату
  #### Прикрепите в файл README.md скриншот дашборда с названием «Задание 4»
-
-
+ #### Custom Dashboard
+![Screenshot](https://github.com/MindTempest/git_hw/blob/main/usage_graph.jpg)
 
 
 
