@@ -9,7 +9,7 @@
 ### Требования к результату
 ### Прикрепите в файл README.md скриншот страницы шаблона с названием «Задание 1»
 
- ![Screenshot](https://github.com/MindTempest/git_hw/blob/main/templates.jpg)
+ ![Screenshot](https://github.com/MindTempest/git_hw/blob/main/templates.jpg) ![Screenshot](https://github.com/MindTempest/git_hw/blob/main/templates1.jpg) ![Screenshot](https://github.com/MindTempest/git_hw/blob/main/templates2.jpg)
 
  
 # Задание 2
@@ -38,10 +38,10 @@
  #### Прикрепите в файл README.md скриншот страницы хостов, где будут видны привязки шаблонов с названиями «Задание 2-3». Хосты должны иметь зелёный статус подключения
 
  #### Хосты
- ![Screenshot](https://github.com/MindTempest/git_hw/blob/main/zbx_hosts.jpg)
+ ![Screenshot](https://github.com/MindTempest/git_hw/blob/main/zbx_hosts.jpg) ![Screenshot](https://github.com/MindTempest/git_hw/blob/main/zbx_hosts1.jpg)  ![Screenshot](https://github.com/MindTempest/git_hw/blob/main/zbx_hosts2.jpg)  ![Screenshot](https://github.com/MindTempest/git_hw/blob/main/zbx_hosts3.jpg)
 
  #### Привязанные Tamplates
- ![Screenshot](https://github.com/MindTempest/git_hw/blob/main/cst_mon.jpg)
+ ![Screenshot](https://github.com/MindTempest/git_hw/blob/main/cst_mon.jpg)  ![Screenshot](https://github.com/MindTempest/git_hw/blob/main/cst_mon1.jpg) ![Screenshot](https://github.com/MindTempest/git_hw/blob/main/cst_mon2.jpg) ![Screenshot](https://github.com/MindTempest/git_hw/blob/main/cst_mon3.jpg)
 
 
  
@@ -56,7 +56,7 @@
  #### Прикрепите в файл README.md скриншот дашборда с названием «Задание 4»
  #### Custom Dashboard
 ![Screenshot](https://github.com/MindTempest/git_hw/blob/main/usage_graph.jpg)
-
+![Screenshot](https://github.com/MindTempest/git_hw/blob/main/usage_graph1.jpg)
 
 
 
