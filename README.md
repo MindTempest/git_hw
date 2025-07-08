@@ -1,26 +1,40 @@
-# Задание 1. Кеширование
-## Приведите примеры проблем, которые может решить кеширование.
-# Ответ
-## Кеширование экономит ресурсы, ускоряет работу системы и повышает отказоустойчивость. (например кеширование HTML-страниц, статических файлов. Что ускоряет загрузку и позволяет временно использовать старые данные, пока сервис не восстановится.)
+# Задание 1. Elasticsearch
+## Установите и запустите Elasticsearch, после чего поменяйте параметр cluster_name на случайный.
 
-# Задание 2. Memcached
-## Установите и запустите memcached.
-## Приведите скриншот systemctl status memcached, где будет видно, что memcached запущен
+## Приведите скриншот команды 'curl -X GET 'localhost:9200/_cluster/health?pretty', сделанной на сервере с установленным Elasticsearch. Где будет виден нестандартный cluster_name.
 
 # Ответ
 
-![Скриншот](https://github.com/MindTempest/git_hw/blob/main/memcached.jpg)
+![Скриншот](https://github.com/MindTempest/git_hw/blob/main/Elastic_get.jpg)
 
-# Задание 3. Удаление по TTL в Memcached
-## Запишите в memcached несколько ключей с любыми именами и значениями, для которых выставлен TTL 5.
-## Приведите скриншот, на котором видно, что спустя 5 секунд ключи удалились из базы.
+# Задание 2. Kibana
+## Установите и запустите Kibana.
+
+## Приведите скриншот интерфейса Kibana на странице http://<ip вашего сервера>:5601/app/dev_tools#/console, где будет выполнен запрос GET /_cluster/health?pretty.
 
 # Ответ
 
-![Скриншот](https://github.com/MindTempest/git_hw/blob/main/key5.jpg)
+![Скриншот](https://github.com/MindTempest/git_hw/blob/main/kibana_get.jpg)
 
-# Задание 4. Запись данных в Redis
-## Запишите в Redis несколько ключей с любыми именами и значениями.
-## Через redis-cli достаньте все записанные ключи и значения из базы, приведите скриншот этой операции.
+# Задание 3. Logstash
+## Установите и запустите Logstash и Nginx. С помощью Logstash отправьте access-лог Nginx в Elasticsearch.
 
-![Скриншот](https://github.com/MindTempest/git_hw/blob/main/redis.jpg)
+## Приведите скриншот интерфейса Kibana, на котором видны логи Nginx.
+
+# Ответ
+
+![Скриншот](https://github.com/MindTempest/git_hw/blob/main/logstash.jpg)
+
+# Задание 4. Filebeat.
+## Установите и запустите Filebeat. Переключите поставку логов Nginx с Logstash на Filebeat.
+
+## Приведите скриншот интерфейса Kibana, на котором видны логи Nginx, которые были отправлены через Filebeat.
+
+# Ответ
+
+![Скриншот](https://github.com/MindTempest/git_hw/blob/main/logs.jpg)
+
+![Скриншот](https://github.com/MindTempest/git_hw/blob/main/dashboard.jpg)
+
+![Скриншот](https://github.com/MindTempest/git_hw/blob/main/filebeat.jpg)
+
