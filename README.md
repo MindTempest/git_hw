@@ -1,72 +1,69 @@
-# Задание 1
-#### 1.1. Поднимите чистый инстанс MySQL версии 8.0+. Можно использовать локальный сервер или контейнер Docker.
-#### 1.2. Создайте учётную запись sys_temp.
-#### 1.3. Выполните запрос на получение списка пользователей в базе данных. (скриншот)
-#### 1.4. Дайте все права для пользователя sys_temp.
-#### 1.5. Выполните запрос на получение списка прав для пользователя sys_temp. (скриншот)
-#### 1.6. Переподключитесь к базе данных от имени sys_temp.
-#### Для смены типа аутентификации с sha2 используйте запрос:
-#### ALTER USER 'sys_test'@'localhost' IDENTIFIED WITH mysql_native_password BY 'password';
-#### 1.6. По ссылке https://downloads.mysql.com/docs/sakila-db.zip скачайте дамп базы данных.
-#### 1.7. Восстановите дамп в базу данных.
-#### 1.8. При работе в IDE сформируйте ER-диаграмму получившейся базы данных. При работе в командной строке используйте команду для получения всех таблиц базы данных. (скриншот)
-## Результатом работы должны быть скриншоты обозначенных заданий, а также простыня со всеми запросами.
 
-
+1. Одним запросом получите информацию о магазине, в котором обслуживается более 300 покупателей, и выведите в результат следующую информацию:
+   - фамилия и имя сотрудника из этого магазина;
+   - город нахождения магазина;
+   - количество пользователей, закреплённых в этом магазине.
 # Ответ
-![Скриншот](https://github.com/MindTempest/git_hw/blob/main/fisr_sql.jpg)
-![Скриншот](https://github.com/MindTempest/git_hw/blob/main/permission_sql.jpg)
-![Скриншот](https://github.com/MindTempest/git_hw/blob/main/sakila_tables.jpg)
-
-## Простыня
-``` bash
-docker run --name mysql8 -e MYSQL_ROOT_PASSWORD=root -p 3306:3306 -d mysql:8.0
-docker exec -it mysql8 mysql -u sys_temp -p
-wget https://downloads.mysql.com/docs/sakila-db.zip
-unzip sakila-db.zip
-docker cp sakila-db/sakila-schema.sql mysql8:/tmp/
-docker cp sakila-db/sakila-data.sql mysql8:/tmp/
-docker exec -i mysql8 mysql -u root -proot < sakila-db/sakila-schema.sql
-docker exec -i mysql8 mysql -u root -proot < sakila-db/sakila-data.sql
-docker exec -it mysql8 mysql -u root -proot -e "USE sakila; SHOW TABLES;"
-```
-## Узнаем ключи для задания 2
-``` bash
-docker exec mysql8 mysql -u sys_temp -ppassword -e "
-SELECT TABLE_NAME, COLUMN_NAME 
-FROM INFORMATION_SCHEMA.COLUMNS 
-WHERE TABLE_SCHEMA = 'sakila' AND COLUMN_KEY = 'PRI'
-ORDER BY TABLE_NAME;"
-```
 
 ``` sql
-CREATE USER 'sys_temp'@'%' IDENTIFIED BY 'password';
-SELECT user, host FROM mysql.user;
-GRANT ALL PRIVILEGES ON *.* TO 'sys_temp'@'%';
-FLUSH PRIVILEGES;
-SHOW GRANTS FOR 'sys_temp'@'%';
+USE sakila;
+
+SELECT 
+    CONCAT(staff.first_name, ' ', staff.last_name) AS manager_name,
+    city.city AS store_city,
+    COUNT(customer.customer_id) AS customer_count
+FROM 
+    store
+JOIN 
+    staff ON store.manager_staff_id = staff.staff_id
+JOIN 
+    address ON store.address_id = address.address_id
+JOIN 
+    city ON address.city_id = city.city_id
+JOIN 
+    customer ON store.store_id = customer.store_id
+GROUP BY 
+    store.store_id, manager_name, store_city
+HAVING 
+    COUNT(customer.customer_id) >300;
 ```
 
-# Задание 2. Составьте таблицу, используя любой текстовый редактор или Excel, в которой должно быть два столбца: в первом должны быть названия таблиц восстановленной базы, во втором названия первичных ключей этих таблиц. Пример: (скриншот/текст)
+![Скриншот](https://github.com/MindTempest/git_hw/blob/main/task1.jpg)
+
+
+2. Получите количество фильмов, продолжительность которых больше средней продолжительности всех фильмов.
+# Ответ 
+``` sql
+USE sakila;
+
+SELECT 
+    COUNT(*) AS long_films_count
+FROM 
+    film
+WHERE 
+    length > (SELECT AVG(length) FROM film);
+``` 
+![Скриншот](https://github.com/MindTempest/git_hw/blob/main/task2.jpg)
+
+
+3. Получите информацию, за какой месяц была получена наибольшая сумма платежей, и добавьте информацию по количеству аренд за этот месяц.
 # Ответ
+``` sql
+USE sakila;
 
-
-| Таблица      |     Первичный ключ   |
-|:------------:|:--------------------:|
-| actor        |  actor_id            |
-| address      |  address_id          |
-| category     |  category_id         |
-| city	       |  city_id             |
-| country	     |  country_id          |
-| customer     |  customer_id         |
-| film  	     |  film_id             |
-| film_actor   |  actor_id, film_id   |
-| film_category|  film_id, category_id|
-| film_text    |  film_id             |
-| inventory	   |  inventory_id        |
-| language     |  language_id         |
-| payment      |  payment_id          |
-| rental       |  rental_id           |
-| staff        |  staff_id            |
-| store        |  store_id            |
-
+SELECT 
+    DATE_FORMAT(payment_date, '%Y-%m') AS payment_period,
+    DATE_FORMAT(payment_date, '%M %Y') AS month_year,
+    SUM(amount) AS total_payments,
+    COUNT(*) AS rental_count
+FROM 
+    payment
+WHERE 
+    payment_date IS NOT NULL
+GROUP BY 
+    payment_period, month_year
+ORDER BY 
+    total_payments DESC
+LIMIT 1;
+```
+![Скриншот](https://github.com/MindTempest/git_hw/blob/main/task3.jpg)
