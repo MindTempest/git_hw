@@ -44,6 +44,12 @@
 
 # Ответ
 
+## Сеансы Wireshark:
+[FIN](https://github.com/MindTempest/git_hw/blob/main/FIN.pcapng)
+[SYN](https://github.com/MindTempest/git_hw/blob/main/SyN.pcapng)
+[XMAS](https://github.com/MindTempest/git_hw/blob/main/XMAS.pcapng)
+[UDP](https://github.com/MindTempest/git_hw/blob/main/UDP.pcapng)
+
 * SYN-сканирование (-sS): Отправляется пакет только с установленным флагом SYN (как при обычном подключении). Это "полуоткрытое" сканирование.
       * Трафик: Клиент -> [SYN] -> Сервер; Сервер -> [SYN/ACK] -> Клиент; Клиент -> [RST] -> Сервер (сбрасывает соединение).
 * FIN-сканирование (-sF): Отправляется пакет с установленным флагом FIN (используется для штатного завершения соединения).
