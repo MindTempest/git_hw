@@ -132,7 +132,7 @@ services:
 
 # Ответ
 * Запустился файл docker-compose.yaml, потому что, при наличии обоих файлов (compose.yaml и docker-compose.yaml) приоритет имеет docker-compose.yaml. (Для обратной совместимости) 
-  * "Приинклудил" compose.yaml в файле docker-compose
+  * "Приинклудил" compose.yaml в файле docker-compose (Из за моей ошибки, что то я сделал не так, пришлось просто в один docker-compose всё запихнуть , а на самом деле просто Include впихнул не туда куда надо) 
 ![screnshot](https://github.com/MindTempest/git_hw/blob/main/task5.jpg)
 ![screnshot](https://github.com/MindTempest/git_hw/blob/main/task5.1.jpg)
 ![screnshot](https://github.com/MindTempest/git_hw/blob/main/task5.2.jpg)
