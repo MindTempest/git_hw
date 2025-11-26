@@ -131,7 +131,7 @@ services:
 * В качестве ответа приложите скриншоты консоли, где видно все введенные команды и их вывод, файл compose.yaml , скриншот portainer c задеплоенным компоузом.
 
 # Ответ
-* Запустился файл compose.yaml, потому что согласно документации Docker Compose, при наличии обоих файлов (compose.yaml и docker-compose.yaml) приоритет имеет compose.yaml. 
+* Запустился файл docker-compose.yaml, потому что, при наличии обоих файлов (compose.yaml и docker-compose.yaml) приоритет имеет docker-compose.yaml. (Для обратной совместимости)  
 ![screnshot](https://github.com/MindTempest/git_hw/blob/main/task5.jpg)
 ![screnshot](https://github.com/MindTempest/git_hw/blob/main/task5.1.jpg)
 ![screnshot](https://github.com/MindTempest/git_hw/blob/main/task5.2.jpg)
