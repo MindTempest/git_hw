@@ -1,36 +1,141 @@
-# Задание 1
-* Проведите разведку системы и определите, какие сетевые службы запущены на защищаемой системе:
-   * sudo nmap -sA < ip-адрес >
-   * sudo nmap -sT < ip-адрес >
-   * sudo nmap -sS < ip-адрес >
-   * sudo nmap -sV < ip-адрес >
+# Домашнее задание к занятию 4 «Оркестрация группой Docker контейнеров на примере Docker Compose»
 
-## По желанию можете поэкспериментировать с опциями: https://nmap.org/man/ru/man-briefoptions.html.
-## В качестве ответа пришлите события, которые попали в логи Suricata и Fail2Ban, прокомментируйте результат.
+# Задача 1
+## Сценарий выполнения задачи:
+
+* Установите docker и docker compose plugin на свою linux рабочую станцию или ВМ.
+* Если dockerhub недоступен создайте файл /etc/docker/daemon.json с содержимым: {"registry-mirrors": ["https://mirror.gcr.io", "https://daocloud.io", "https://c.163.com/", "https://registry.docker-cn.com"]}
+* Зарегистрируйтесь и создайте публичный репозиторий с именем "custom-nginx" на https://hub.docker.com (ТОЛЬКО ЕСЛИ У ВАС ЕСТЬ ДОСТУП);
+* скачайте образ nginx:1.29.0;
+* Создайте Dockerfile и реализуйте в нем замену дефолтной индекс-страницы(/usr/share/nginx/html/index.html), на файл index.html с содержимым:
+```
+<html>
+<head>
+Hey, Netology
+</head>
+<body>
+<h1>I will be DevOps Engineer!</h1>
+</body>
+</html> 
+```
+* Соберите и отправьте созданный образ в свой dockerhub-репозитории c tag 1.0.0 (ТОЛЬКО ЕСЛИ ЕСТЬ ДОСТУП).
+* Предоставьте ответ в виде ссылки на https://hub.docker.com/<username_repo>/custom-nginx/general .
 # Ответ
-![Suricata](https://github.com/MindTempest/git_hw/blob/main/suricata.jpg)
-* Suricata алертит про скан nmap'ом 
-![Fail2ban](https://github.com/MindTempest/git_hw/blob/main/banned.jpg)
-* fail2ban с настроеными jail , банит после нескольких попыток.
+* https://hub.docker.com/repository/docker/mindtempest/custom-nginx/general
+  
+  ![screnshot](https://github.com/MindTempest/git_hw/blob/main/custon-nginx.jpg)
+  ![screnshot](https://github.com/MindTempest/git_hw/blob/main/customnginx.jpg)
+
+  
+# Задача 2
+* Запустите ваш образ custom-nginx:1.0.0 командой docker run в соответвии с требованиями:
+  * имя контейнера "ФИО-custom-nginx-t2"
+  * контейнер работает в фоне
+  * контейнер опубликован на порту хост системы 127.0.0.1:8080
+  * Не удаляя, переименуйте контейнер в "custom-nginx-t2"
+  * Выполните команду date +"%d-%m-%Y %T.%N %Z" ; sleep 0.150 ; docker ps ; ss -tlpn | grep 127.0.0.1:8080  ; docker logs custom-nginx-t2 -n1 ; docker exec -it custom-nginx-t2 base64 /usr/share/nginx/html/index.html
+  * Убедитесь с помощью curl или веб браузера, что индекс-страница доступна.
+* В качестве ответа приложите скриншоты консоли, где видно все введенные команды и их вывод.
+# Ответ
+ ![screnshot](https://github.com/MindTempest/git_hw/blob/main/Task2.jpg)
+
+ ![screnshot](https://github.com/MindTempest/git_hw/blob/main/task2.1.jpg)
+ 
+ ![screnshot](https://github.com/MindTempest/git_hw/blob/main/task2.2.jpg)
+  
+ ![screnshot](https://github.com/MindTempest/git_hw/blob/main/task2.3.jpg)
 
 
-# Задание 2
-* Проведите атаку на подбор пароля для службы SSH:
-* hydra -L users.txt -P pass.txt < ip-адрес > ssh
+# Задача 3
+* Воспользуйтесь docker help или google, чтобы узнать как подключиться к стандартному потоку ввода/вывода/ошибок контейнера "custom-nginx-t2".
+* Подключитесь к контейнеру и нажмите комбинацию Ctrl-C.
+* Выполните docker ps -a и объясните своими словами почему контейнер остановился.
+* Перезапустите контейнер
+* Зайдите в интерактивный терминал контейнера "custom-nginx-t2" с оболочкой bash.
+* Установите любимый текстовый редактор(vim, nano итд) с помощью apt-get.
+* Отредактируйте файл "/etc/nginx/conf.d/default.conf", заменив порт "listen 80" на "listen 81".
+* Запомните(!) и выполните команду nginx -s reload, а затем внутри контейнера curl http://127.0.0.1:80 ; curl http://127.0.0.1:81.
+* Выйдите из контейнера, набрав в консоли exit или Ctrl-D.
+* Проверьте вывод команд: ss -tlpn | grep 127.0.0.1:8080 , docker port custom-nginx-t2, curl http://127.0.0.1:8080. Кратко объясните суть возникшей проблемы.
+  
+* Удалите запущенный контейнер "custom-nginx-t2", не останавливая его.(воспользуйтесь --help или google)
+* В качестве ответа приложите скриншоты консоли, где видно все введенные команды и их вывод.
 
-* Настройка hydra:
-   * создайте два файла: users.txt и pass.txt;
-   * в каждой строчке первого файла должны быть имена пользователей, второго — пароли. В нашем случае это могут быть случайные строки, но ради эксперимента можете добавить имя и пароль существующего пользователя.
-* Дополнительная информация по hydra: https://kali.tools/?p=1847.
+# Ответ
+* Нажатие Ctrl+C отправляет сигнал прерывания (SIGINT) процессу nginx, что приводит к его завершению. Когда основной процесс контейнера завершается тогда и контейнер останавливается.
+ * ![screnshot](https://github.com/MindTempest/git_hw/blob/main/task3.jpg)
+ * ![screnshot](https://github.com/MindTempest/git_hw/blob/main/task3.1.jpg)
 
-* Включение защиты SSH для Fail2Ban:
-   * открыть файл /etc/fail2ban/jail.conf,
-   * найти секцию ssh,
-   * установить enabled в true.
-* Дополнительная информация по Fail2Ban:https://putty.org.ru/articles/fail2ban-ssh.html.
 
-* В качестве ответа пришлите события, которые попали в логи Suricata и Fail2Ban, прокомментируйте результат.
-![Hydra](https://github.com/MindTempest/git_hw/blob/main/hydra.jpg)
-* Fail2ban фактически сразу забанил попытку подбора
-* fast.log suricata по 22 порту ничего не заметил, там пусто.
+* Суть проблемы:
+  * Контейнер опубликовал порт 80 на хост-систему как 127.0.0.1:8080. Когда мы внутри контейнера изменили порт nginx на 81, внешний порт 8080 на хосте продолжает перенаправлять на порт 80 внутри контейнера, но nginx теперь слушает на порту 81
+  * ![screnshot](https://github.com/MindTempest/git_hw/blob/main/task3.2.jpg)
+  * ![screnshot](https://github.com/MindTempest/git_hw/blob/main/task3.3.jpg)
+ 
+  
+ ![screnshot](https://github.com/MindTempest/git_hw/blob/main/task3.4.jpg)
+
+
+# Задача 4
+* Запустите первый контейнер из образа centos c любым тегом в фоновом режиме, подключив папку текущий рабочий каталог $(pwd) на хостовой машине в /data контейнера, используя ключ -v.
+* Запустите второй контейнер из образа debian в фоновом режиме, подключив текущий рабочий каталог $(pwd) в /data контейнера.
+* Подключитесь к первому контейнеру с помощью docker exec и создайте текстовый файл любого содержания в /data.
+* Добавьте ещё один файл в текущий каталог $(pwd) на хостовой машине.
+* Подключитесь во второй контейнер и отобразите листинг и содержание файлов в /data контейнера.
+* В качестве ответа приложите скриншоты консоли, где видно все введенные команды и их вывод.
+
+# Ответ
+![screnshot](https://github.com/MindTempest/git_hw/blob/main/task4.jpg)
+![screnshot](https://github.com/MindTempest/git_hw/blob/main/task4.1.jpg)
+![screnshot](https://github.com/MindTempest/git_hw/blob/main/task4.2.jpg)
+![screnshot](https://github.com/MindTempest/git_hw/blob/main/task4.3.jpg)
+![screnshot](https://github.com/MindTempest/git_hw/blob/main/task4.4.jpg)
+
+# Задача 5
+* Создайте отдельную директорию(например /tmp/netology/docker/task5) и 2 файла внутри него. "compose.yaml" с содержимым:
+```
+version: "3"
+services:
+  portainer:
+    network_mode: host
+    image: portainer/portainer-ce:latest
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+```
+* "docker-compose.yaml" с содержимым:
+```
+version: "3"
+services:
+  registry:
+    image: registry:2
+
+    ports:
+    - "5000:5000"
+```
+* И выполните команду "docker compose up -d". Какой из файлов был запущен и почему? (подсказка: https://docs.docker.com/compose/compose-application-model/#the-compose-file )
+* Отредактируйте файл compose.yaml так, чтобы были запущенны оба файла. (подсказка: https://docs.docker.com/compose/compose-file/14-include/)
+* Выполните в консоли вашей хостовой ОС необходимые команды чтобы залить образ custom-nginx как custom-nginx:latest в запущенное вами, локальное registry. Дополнительная документация: https://distribution.github.io/distribution/about/deploying/
+* Откройте страницу "https://127.0.0.1:9000" и произведите начальную настройку portainer.(логин и пароль адмнистратора)
+* Откройте страницу "http://127.0.0.1:9000/#!/home", выберите ваше local окружение. Перейдите на вкладку "stacks" и в "web editor" задеплойте следующий компоуз:
+```
+version: '3'
+
+services:
+  nginx:
+    image: 127.0.0.1:5000/custom-nginx
+    ports:
+      - "9090:80"
+```
+* Перейдите на страницу "http://127.0.0.1:9000/#!/2/docker/containers", выберите контейнер с nginx и нажмите на кнопку "inspect". В представлении <> Tree разверните поле "Config" и сделайте скриншот от поля "AppArmorProfile" до "Driver".
+* Удалите любой из манифестов компоуза(например compose.yaml). Выполните команду "docker compose up -d". Прочитайте warning, объясните суть предупреждения и выполните предложенное действие. Погасите compose-проект ОДНОЙ(обязательно!!) командой.
+* В качестве ответа приложите скриншоты консоли, где видно все введенные команды и их вывод, файл compose.yaml , скриншот portainer c задеплоенным компоузом.
+
+# Ответ
+* Запустился файл compose.yaml, потому что согласно документации Docker Compose, при наличии обоих файлов (compose.yaml и docker-compose.yaml) приоритет имеет compose.yaml. 
+![screnshot](https://github.com/MindTempest/git_hw/blob/main/task5.jpg)
+![screnshot](https://github.com/MindTempest/git_hw/blob/main/task5.1.jpg)
+![screnshot](https://github.com/MindTempest/git_hw/blob/main/task5.2.jpg)
+![screnshot](https://github.com/MindTempest/git_hw/blob/main/task5.3.jpg)
+![screnshot](https://github.com/MindTempest/git_hw/blob/main/task5.4.jpg)
+![screnshot](https://github.com/MindTempest/git_hw/blob/main/task5.5.jpg)
 
