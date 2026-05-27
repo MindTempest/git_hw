@@ -6,7 +6,7 @@
 #    Ответ 
 ![Скриншот](https://github.com/MindTempest/git_hw/blob/main/1st-pod.jpg) 
 
-#    Выввод команд get pods & svc
+#    Вывод команд get pods & svc
 ![Скриншот](https://github.com/MindTempest/git_hw/blob/main/Pods_stat.jpg) 
 ![Скриншот](https://github.com/MindTempest/git_hw/blob/main/pods_stat2.jpg)
 ![Скриншот](https://github.com/MindTempest/git_hw/blob/main/svc.jpg)
