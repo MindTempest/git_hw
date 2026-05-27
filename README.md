@@ -21,7 +21,7 @@
 
 ![Скриншот](https://github.com/MindTempest/git_hw/blob/main/2nd-pod.jpg)
 
-#    Манифесты
+#    Манифесты и ссылки на них
 
 ``` yaml
     apiVersion: v1
@@ -37,6 +37,7 @@ spec:
     ports:
     - containerPort: 8080
 ```
+[Hello world yaml](https://github.com/MindTempest/git_hw/blob/main/hello_world.yaml)
 ``` yaml
     apiVersion: v1
 kind: Service
@@ -51,6 +52,7 @@ spec:
       targetPort: 8080
   type: ClusterIP
 ```
+[Neto web](https://github.com/MindTempest/git_hw/blob/main/neto-web.yaml)
 ``` yaml
    apiVersion: v1
 kind: Pod
@@ -65,7 +67,7 @@ spec:
     ports:
     - containerPort: 8080 
 ```
-
+[svc](https://github.com/MindTempest/git_hw/blob/main/svc.yaml)
 
 
 
