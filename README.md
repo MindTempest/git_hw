@@ -6,32 +6,74 @@
 *    Создать отдельный Pod с приложением multitool и убедиться с помощью curl, что из пода есть доступ до приложений из п.1.
 
 #    Ответ 
+* Ошибка возникает из за дефолтных портов
 ![Скриншот](https://github.com/MindTempest/git_hw/blob/main/before.jpg) 
 ![Скриншот](https://github.com/MindTempest/git_hw/blob/main/nginx_curl.jpg) 
 ![Скриншот](https://github.com/MindTempest/git_hw/blob/main/tool_curl.jpg) 
 
-
-#    Задание 2. Создать Service и подключить его к Pod
-*    Создать Pod с именем netology-web.
-*    Использовать image — gcr.io/kubernetes-e2e-test-images/echoserver:2.2.
-*    Создать Service с именем netology-svc и подключить к netology-web.
-*    Подключиться локально к Service с помощью kubectl port-forward и вывести значение (curl или в браузере).
-
-#    Ответ
-
-![Скриншот](https://github.com/MindTempest/git_hw/blob/main/2nd-pod.jpg)
-
 #    Манифесты и ссылки на них
 
 
-[Hello world yaml](https://github.com/MindTempest/git_hw/blob/main/hello_world.yaml)
+[deployment yaml](https://github.com/MindTempest/git_hw/blob/main/depl.yaml)
+[service yaml](https://github.com/MindTempest/git_hw/blob/main/service.yaml)
 
-[Neto web](https://github.com/MindTempest/git_hw/blob/main/neto-web.yaml)
-
-[svc](https://github.com/MindTempest/git_hw/blob/main/svc.yaml)
-
-
-
+* deployment
+``` yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx-multitool
+  labels:
+    app: nginx-multitool
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: nginx-multitool
+  template:
+    metadata:
+      labels:
+        app: nginx-multitool
+    spec:
+      containers:
+      - name: nginx
+        image: nginx:alpine
+        ports:
+        - containerPort: 80
+        resources:
+          requests:
+            cpu: "100m"
+            memory: "128Mi"
+      - name: multitool
+        image: praqma/network-multitool
+        env:
+        - name: HTTP_PORT
+          value: "8080"          # <- конфликт
+        ports:
+        - containerPort: 8080
+        resources:
+          requests:
+            cpu: "50m"
+            memory: "64Mi"
+```
+* service 
+``` yaml
+apiVersion: v1
+kind: Service
+metadata:
+  name: nginx-multitool-svc
+spec:
+  selector:
+    app: nginx-multitool
+  ports:
+  - name: nginx
+    port: 80
+    targetPort: 80
+  - name: multitool
+    port: 8080
+    targetPort: 8080
+  type: ClusterIP
+```
 
 
 
