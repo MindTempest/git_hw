@@ -7,17 +7,15 @@
 
 #    Ответ 
 * Ошибка возникает из за дефолтных портов
-![Скриншот](https://github.com/MindTempest/git_hw/blob/main/before.jpg) 
-![Скриншот](https://github.com/MindTempest/git_hw/blob/main/nginx_curl.jpg) 
-![Скриншот](https://github.com/MindTempest/git_hw/blob/main/tool_curl.jpg) 
+*  ![Скриншот](https://github.com/MindTempest/git_hw/blob/main/before.jpg) 
+*  ![Скриншот](https://github.com/MindTempest/git_hw/blob/main/nginx_curl.jpg) 
+*  ![Скриншот](https://github.com/MindTempest/git_hw/blob/main/tool_curl.jpg) 
 
 #    Манифесты и ссылки на них
 
 
 *  [deployment yaml](https://github.com/MindTempest/git_hw/blob/main/depl.yaml)
-*  [service yaml](https://github.com/MindTempest/git_hw/blob/main/service.yaml)
 
-*  deployment
 ``` yaml
 apiVersion: apps/v1
 kind: Deployment
@@ -56,7 +54,8 @@ spec:
             cpu: "50m"
             memory: "64Mi"
 ```
-*  service
+*  [service yaml](https://github.com/MindTempest/git_hw/blob/main/service.yaml)
+
 ``` yaml
 apiVersion: v1
 kind: Service
