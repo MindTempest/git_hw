@@ -14,10 +14,10 @@
 #    Манифесты и ссылки на них
 
 
-[deployment yaml](https://github.com/MindTempest/git_hw/blob/main/depl.yaml)
-[service yaml](https://github.com/MindTempest/git_hw/blob/main/service.yaml)
+*  [deployment yaml](https://github.com/MindTempest/git_hw/blob/main/depl.yaml)
+*  [service yaml](https://github.com/MindTempest/git_hw/blob/main/service.yaml)
 
-* deployment
+*  deployment
 ``` yaml
 apiVersion: apps/v1
 kind: Deployment
@@ -56,7 +56,7 @@ spec:
             cpu: "50m"
             memory: "64Mi"
 ```
-* service 
+*  service
 ``` yaml
 apiVersion: v1
 kind: Service
