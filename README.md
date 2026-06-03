@@ -80,8 +80,8 @@ spec:
 *  Продемонстрировать состояние пода до и после запуска сервиса.
 
 #  Ответ
-*   [До](https://github.com/MindTempest/git_hw/blob/main/init-pod.jpg)
-*   [После](https://github.com/MindTempest/git_hw/blob/main/svc-init.jpg)
+*   ![До](https://github.com/MindTempest/git_hw/blob/main/init-pod.jpg)
+*   ![После](https://github.com/MindTempest/git_hw/blob/main/svc-init.jpg)
 
 #  Yaml файлы
 *  [deployment-nginx yaml](https://github.com/MindTempest/git_hw/blob/main/depl-nginx.yaml)
