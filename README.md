@@ -79,4 +79,67 @@ spec:
 *  Создать и запустить Service. Убедиться, что Init запустился.
 *  Продемонстрировать состояние пода до и после запуска сервиса.
 
+#  Ответ
+*   [До](https://github.com/MindTempest/git_hw/blob/main/init-pod.jpg)
+*   [После](https://github.com/MindTempest/git_hw/blob/main/svc-init.jpg)
 
+#  Yaml файлы
+*  [deployment-nginx yaml](https://github.com/MindTempest/git_hw/blob/main/depl-nginx.yaml)
+``` yaml
+  apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx-wait
+  labels:
+    app: nginx-wait
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: nginx-wait
+  template:
+    metadata:
+      labels:
+        app: nginx-wait
+    spec:
+      initContainers:
+      - name: wait-for-service
+        image: busybox:1.36       
+        command:
+        - sh
+        - -c
+        - |
+          until nslookup nginx-wait-svc.default.svc.cluster.local > /dev/null 2>&1
+          do
+            sleep 2
+          done
+        resources:
+          requests:
+            cpu: "50m"
+            memory: "64Mi"
+      
+      containers:
+      - name: nginx
+        image: nginx:alpine
+        ports:
+        - containerPort: 80
+        resources:
+          requests:
+            cpu: "100m"
+            memory: "128Mi"   
+```
+
+* [service-nginx yaml](https://github.com/MindTempest/git_hw/blob/main/svc-nginx.yaml)
+``` yaml
+  apiVersion: v1
+kind: Service
+metadata:
+  name: nginx-wait-svc
+spec:
+  selector:
+    app: nginx-wait
+  ports:
+  - port: 80
+    targetPort: 80
+  type: ClusterIP
+```
